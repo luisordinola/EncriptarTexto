@@ -6,48 +6,73 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portafolio</title>
     <link rel="stylesheet" href="styles/style.css">
+    <script>
+        function encrypt() {
+            const text = document.getElementById("inputText").value;
+            const shift = parseInt(document.getElementById("shift").value) || 0;
+            let result = "";
 
+            for (let i = 0; i < text.length; i++) {
+                let charCode = text.charCodeAt(i);
+                if (charCode >= 65 && charCode <= 90) {
+                    result += String.fromCharCode(((charCode - 65 + shift) % 26) + 65);
+                } else if (charCode >= 97 && charCode <= 122) {
+                    result += String.fromCharCode(((charCode - 97 + shift) % 26) + 97);
+                } else {
+                    result += text[i];
+                }
+            }
+            document.getElementById("result").textContent = "Texto Encriptado: " + result;
+        }
+
+        function decrypt() {
+            const text = document.getElementById("inputText").value;
+            const shift = parseInt(document.getElementById("shift").value) || 0;
+            let result = "";
+
+            for (let i = 0; i < text.length; i++) {
+                let charCode = text.charCodeAt(i);
+                if (charCode >= 65 && charCode <= 90) {
+                    result += String.fromCharCode(((charCode - 65 - shift + 26) % 26) + 65);
+                } else if (charCode >= 97 && charCode <= 122) {
+                    result += String.fromCharCode(((charCode - 97 - shift + 26) % 26) + 97);
+                } else {
+                    result += text[i];
+                }
+            }
+            document.getElementById("result").textContent = "Texto Desencriptado: " + result;
+        }
+    </script>
 </head>
 <body>
     <header class="header">
         <nav class="header__menu">
-            <a class="header__menu__link" href="index.html">Home</a>
+            <a class="header__menu__link" href="index.html">Inicio</a>
             <a class="header__menu__link" href="about.html">Sobre mí</a>
         </nav>
     </header>
     <main class="presentacion">
         <section class="presentacion__contenido">
             <h1 class="presentacion__contenido__titulo">
-                Eleve tu negocio digital a otro nivel 
-                <strong class="titulo-destaque">con un Front-end de calidad!
+                Encriptador
+                <strong class="titulo-destaque">de Texto!
                 </strong></h1>
-                <p class="presentacion__contenido__texto">¡Hola! Soy Ana García, desarrolladora Front-end con
-                    especialización en React, HTML y CSS. Ayudo a pequeños
-                    negocios y diseñadores a llevar a cabo buenas ideas.
-                    ¿Hablamos?
-
+                <p class="presentacion__contenido__texto">¡Hola! Soy Luis Ordinola, este es mi encriptador de texto!
                 </p>
                 <div class="presentacion__enlaces">
-                    <h2 class="presentacion__enlaces__subtitulo">Accede a mis redes</h2>
-                    <a class="presentacion__enlaces__link" href="https://github.com/">
-                        <img src="./assets/github.png">
-                        Github
-                    </a>
-                    <a class="presentacion__enlaces__link" href="https://linkedin.com/in/">
-                        <img src="./assets/linkedin.png">
-                        Linkedin
-                    </a>
-                    <a class="presentacion__enlaces__link" href="https://twitch.tv/">
-                        <img src="./assets/twitch.png">
-                        Twitch
-                    </a>
+                    <h1>Encriptar y Desencriptar Texto</h1>
+                    <textarea id="inputText" rows="4" placeholder="Escribe aquí el texto..."></textarea>
+                    <input type="number" id="shift" placeholder="Desplazamiento (clave)" min="1" max="25">
+                    <button onclick="encrypt()">Encriptar</button>
+                    <button onclick="decrypt()">Desencriptar</button>
+                    <div class="result" id="result"></div>
                 </div>
                
         </section>
-            <img class="presentacion__imagen" src="./assets/Imagen.png" alt="Foto de Ana García desarrolando un proyecto">
+            <img class="presentacion__imagen" src="./assets/7a516269-2443-4079-8c7f-bbc58de63d89.jpg" alt="Foto de Ana García desarrolando un proyecto">
     </main>
     <footer class="footer">
-        <p>Desarrollado por Alura Latam</p>
+        <p>Desarrollado por Alura Latam + Luis Ordinola</p>
     </footer>
 </body>
 </html>
